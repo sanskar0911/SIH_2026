@@ -21,7 +21,7 @@ try:
             last_hidden = h_n[-1]
             displacements = self.fc(last_hidden).view(-1, 5, 2)
             return displacements
-except ImportError:
+except (ImportError, Exception):
     torch = None
     TrackForecasterConvLSTM = None
 

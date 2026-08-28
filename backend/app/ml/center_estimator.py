@@ -36,7 +36,7 @@ try:
             center_offsets = self.fc_center(feat_flat)
             confidence = self.fc_confidence(feat_flat)
             return center_offsets, confidence
-except ImportError:
+except (ImportError, Exception):
     torch = None
     CenterRegressorCNN = None
 

@@ -3,7 +3,7 @@ from typing import Dict, Any, Optional
 
 try:
     import torch
-except ImportError:
+except (ImportError, Exception):
     torch = None
 
 from app.ml.real_detector import detector_service

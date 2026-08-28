@@ -29,7 +29,7 @@ try:
             probs = torch.sigmoid(self.fc_prob(feat_flat))
             bboxes = torch.sigmoid(self.fc_bbox(feat_flat))
             return probs, bboxes
-except ImportError:
+except (ImportError, Exception):
     torch = None
     CycloneDetectorCNN = None
 
