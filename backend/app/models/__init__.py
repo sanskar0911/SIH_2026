@@ -9,6 +9,7 @@ from app.models.explanation import ExplanationModel
 from app.models.annotation import AnnotationModel
 from app.models.analysis_job import AnalysisJobModel
 from app.models.model_version import ModelVersionModel
+from app.models.audit import AuditRecordModel
 
 __all__ = [
     "StormModel",
@@ -22,4 +23,5 @@ __all__ = [
     "AnnotationModel",
     "AnalysisJobModel",
     "ModelVersionModel",
+    "AuditRecordModel",
 ]

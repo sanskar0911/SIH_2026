@@ -59,6 +59,14 @@ class ScenarioEngine:
             self.modality_status[modality] = next_status
         return self.modality_status
 
+    def toggle_specific_modality(self, modality: str, status: Optional[str] = None) -> Dict[str, ModalityStatusType]:
+        if modality in self.modality_status:
+            if status:
+                self.modality_status[modality] = status
+            else:
+                self.toggle_modality(modality)
+        return self.modality_status
+
     def get_active_storms(self) -> List[StormSchema]:
         confidence_modifier = 0.0
         if self.modality_status["microwave"] == "MISSING":
@@ -71,6 +79,31 @@ class ScenarioEngine:
             confidence_modifier -= 10.0
 
         storms: List[StormSchema] = []
+
+        # NIO-DEMO-001 (Seeded Demo Cyclone for Judges)
+        demo_storm = StormSchema(
+            id="NIO-DEMO-001",
+            name="NIO-DEMO-001",
+            classification="SUPER CYCLONIC STORM",
+            status="ACTIVE",
+            lat=16.4,
+            lon=85.2,
+            wind=115.0,
+            pressure=932.0,
+            movement="NW 16 KM/H",
+            confidence=max(50.0, 94.0 + confidence_modifier),
+            genesisProb=99.0,
+            rapidIntensificationProb=88.0,
+            trackConfidence=max(50.0, 92.0 + confidence_modifier),
+            landInteraction="HIGH",
+            organization=96.0,
+            symmetry=92.0,
+            eyeSignature="DETECTED",
+            eyewallConfidence=98.0,
+            structureTrend="STRENGTHENING",
+            asymmetry=10.0
+        )
+        storms.append(demo_storm)
 
         # TC-ARUN
         arun = StormSchema(

@@ -3,8 +3,9 @@ from app.services.scenario_service import ScenarioEngine
 def test_scenario_engine_defaults():
     engine = ScenarioEngine()
     storms = engine.get_active_storms()
-    assert len(storms) >= 3
-    assert storms[0].id == "TC-ARUN"
+    assert len(storms) >= 4
+    assert any(s.id == "NIO-DEMO-001" for s in storms)
+    assert any(s.id == "TC-ARUN" for s in storms)
 
 def test_scenario_missing_microwave():
     engine = ScenarioEngine()
@@ -25,5 +26,4 @@ def test_forecast_uncertainty_multiplier():
     engine.set_scenario("POOR_DATA")
     fcst = engine.get_forecast("TC-ARUN")
     assert len(fcst) == 6
-    # Lead 72h confidence should be reduced in POOR_DATA scenario
     assert fcst[-1].confidence < 70.0

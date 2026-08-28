@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from app.api.v1 import (
     storms, observations, forecasts, genesis, alerts,
     explanations, historical, data_health, analysis,
-    feedback, models, metrics, system
+    feedback, models, metrics, system, risk, audit
 )
 
 api_router = APIRouter()
@@ -20,3 +20,5 @@ api_router.include_router(feedback.router)
 api_router.include_router(models.router)
 api_router.include_router(metrics.router)
 api_router.include_router(system.router)
+api_router.include_router(risk.router)
+api_router.include_router(audit.router)

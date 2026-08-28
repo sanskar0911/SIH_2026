@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.schemas.system import ScenarioRequest, ScenarioResponse
+from app.schemas.system import ScenarioRequest, ScenarioResponse, ModalityToggleRequest
 from app.services.scenario_service import scenario_engine
 
 router = APIRouter(prefix="/system", tags=["System"])
@@ -25,3 +25,11 @@ def get_system_status():
 @router.post("/scenario", response_model=ScenarioResponse)
 def set_scenario(req: ScenarioRequest):
     return scenario_engine.set_scenario(req.scenario)
+
+@router.post("/modality-toggle")
+def toggle_modality(req: ModalityToggleRequest):
+    updated = scenario_engine.toggle_specific_modality(req.modality, req.status)
+    return {
+        "message": f"Modality '{req.modality}' status updated",
+        "modalityStatus": updated
+    }
