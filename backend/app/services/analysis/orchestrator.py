@@ -11,6 +11,7 @@ from app.services.tracking.track_service import TrackService
 from app.services.windfield.windfield_service import WindfieldService
 from app.services.uncertainty.uncertainty_service import UncertaintyService
 from app.services.consistency.physics_checker import PhysicsChecker
+from app.ml.pipeline_runner import pipeline_runner
 
 class AnalysisOrchestrator:
     def __init__(self):
@@ -32,20 +33,22 @@ class AnalysisOrchestrator:
     def run_pipeline(self, storm_id: str, modality_status: Dict[str, str]) -> Dict[str, Any]:
         job_id = f"JOB-{uuid.uuid4().hex[:8]}"
 
-        # 1. Ingest
+        # 1. Ingest & Preprocess
         raw_obs = self.ingestion.fetch(storm_id)
-        # 2. QC
         qc_obs = self.qc.check_quality(raw_obs)
-        # 3. Fusion
+        
+        # 2. Execute PyTorch Core Real AI Pipeline (Tensor -> Detector -> Center -> State Vector -> ConvLSTM -> Uncertainty)
+        ai_pipeline_result = pipeline_runner.run_pipeline(
+            storm_id=storm_id,
+            modality_status=modality_status
+        )
+
+        # 3. Fusion & Consistency Validation
         fused = self.fusion.fuse_modalities(modalities={"raw": qc_obs}, modality_status=modality_status)
-        # 4. Intensity
-        int_data = self.intensity.estimate_intensity(fused)
-        # 5. Tracking
-        track_data = self.tracking.predict_track(15.8, 84.6, fused)
-        # 6. Uncertainty
-        unc_data = self.uncertainty.calculate_uncertainty(track_data, fused["degraded_mode"])
-        # 7. Physics check
-        phys_result = self.physics.validate_consistency(int_data, track_data)
+        phys_result = self.physics.validate_consistency(
+            ai_pipeline_result["state_vector"],
+            ai_pipeline_result["forecast"]
+        )
 
         return {
             "job_id": job_id,
@@ -54,10 +57,11 @@ class AnalysisOrchestrator:
             "progress": 100.0,
             "current_stage": "COMPLETE",
             "result": {
+                "ai_pipeline": ai_pipeline_result,
                 "fused": fused,
-                "intensity": int_data,
-                "track": track_data,
-                "uncertainty": unc_data,
+                "intensity": ai_pipeline_result["state_vector"],
+                "track": ai_pipeline_result["forecast"],
+                "uncertainty": ai_pipeline_result["uncertainty"],
                 "physics": phys_result
             }
         }
