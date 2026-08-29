@@ -2031,35 +2031,35 @@ export default function App() {
 
         <nav className="sidebar-nav">
           <div className="nav-section-title">Command center</div>
-          <a className={`nav-item ${route === '/' ? 'active' : ''}`} onClick={() => navigateTo('/')}>
-            <Activity size={14} /> <span>Live Dashboard</span>
+          <a className={`nav-item ${route === '/' ? 'active' : ''}`} href="#/" title="Live Dashboard" aria-label="Live Dashboard" aria-current={route === '/' ? 'page' : undefined}>
+            <Activity size={14} /> <span className="nav-label">Live Dashboard</span>
           </a>
-          <a className={`nav-item ${route.startsWith('/storms/') ? 'active' : ''}`} onClick={() => navigateTo(`/storms/${selectedStorm.id}`)}>
-            <Wind size={14} /> <span>Storm Analysis</span>
+          <a className={`nav-item ${route.startsWith('/storms/') ? 'active' : ''}`} href={`#/storms/${selectedStorm.id}`} title="Storm Analysis" aria-label="Storm Analysis" aria-current={route.startsWith('/storms/') ? 'page' : undefined}>
+            <Wind size={14} /> <span className="nav-label">Storm Analysis</span>
           </a>
           
           <div className="nav-section-title" style={{ marginTop: '10px' }}>Observations</div>
-          <a className={`nav-item ${route === '/genesis' ? 'active' : ''}`} onClick={() => navigateTo('/genesis')}>
-            <Layers size={14} /> <span>Genesis Watch</span>
+          <a className={`nav-item ${route === '/genesis' ? 'active' : ''}`} href="#/genesis" title="Genesis Watch" aria-label="Genesis Watch" aria-current={route === '/genesis' ? 'page' : undefined}>
+            <Layers size={14} /> <span className="nav-label">Genesis Watch</span>
           </a>
-          <a className={`nav-item ${route === '/historical' ? 'active' : ''}`} onClick={() => navigateTo('/historical')}>
-            <BookOpen size={14} /> <span>Historical Replay</span>
+          <a className={`nav-item ${route === '/historical' ? 'active' : ''}`} href="#/historical" title="Historical Replay" aria-label="Historical Replay" aria-current={route === '/historical' ? 'page' : undefined}>
+            <BookOpen size={14} /> <span className="nav-label">Historical Replay</span>
           </a>
 
           <div className="nav-section-title" style={{ marginTop: '10px' }}>System health</div>
-          <a className={`nav-item ${route === '/alerts' ? 'active' : ''}`} onClick={() => navigateTo('/alerts')}>
-            <AlertTriangle size={14} /> <span>Alert Center</span>
+          <a className={`nav-item ${route === '/alerts' ? 'active' : ''}`} href="#/alerts" title="Alert Center" aria-label={alerts.length > 0 ? `Alert Center, ${alerts.length} active alerts` : 'Alert Center'} aria-current={route === '/alerts' ? 'page' : undefined}>
+            <AlertTriangle size={14} /> <span className="nav-label">Alert Center</span>
             {alerts.length > 0 && (
-              <span style={{ marginLeft: 'auto', background: 'var(--accent-red)', color: 'var(--bg-darker)', fontSize: '8px', fontWeight: 'bold', padding: '1px 5px', borderRadius: '10px' }}>
+              <span className="nav-badge">
                 {alerts.length}
               </span>
             )}
           </a>
-          <a className={`nav-item ${route === '/data-health' ? 'active' : ''}`} onClick={() => navigateTo('/data-health')}>
-            <Database size={14} /> <span>Data Freshness</span>
+          <a className={`nav-item ${route === '/data-health' ? 'active' : ''}`} href="#/data-health" title="Data Freshness" aria-label="Data Freshness" aria-current={route === '/data-health' ? 'page' : undefined}>
+            <Database size={14} /> <span className="nav-label">Data Freshness</span>
           </a>
-          <a className={`nav-item ${route === '/model' ? 'active' : ''}`} onClick={() => navigateTo('/model')}>
-            <Terminal size={14} /> <span>Model Intel</span>
+          <a className={`nav-item ${route === '/model' ? 'active' : ''}`} href="#/model" title="Model Intel" aria-label="Model Intel" aria-current={route === '/model' ? 'page' : undefined}>
+            <Terminal size={14} /> <span className="nav-label">Model Intel</span>
           </a>
         </nav>
 

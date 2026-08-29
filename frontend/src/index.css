@@ -159,6 +159,22 @@ button, input, select, textarea {
   color: var(--text-primary);
 }
 
+.nav-item:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: -2px;
+  color: var(--text-primary);
+}
+
+.nav-badge {
+  margin-left: auto;
+  background: var(--accent-red);
+  color: var(--bg-darker);
+  font-size: 8px;
+  font-weight: bold;
+  padding: 1px 5px;
+  border-radius: 10px;
+}
+
 .nav-item.active {
   background-color: rgba(56, 189, 248, 0.06);
   color: var(--accent-cyan);
@@ -883,7 +899,7 @@ button, input, select, textarea {
   }
   .app-sidebar .sidebar-logo span,
   .app-sidebar .sidebar-logo font,
-  .app-sidebar .nav-item span,
+  .app-sidebar .nav-label,
   .app-sidebar .nav-section-title,
   .app-sidebar .sidebar-footer {
     display: none;
@@ -891,6 +907,13 @@ button, input, select, textarea {
   .app-sidebar .nav-item {
     justify-content: center;
     padding: 12px 0;
+    position: relative;
+  }
+  .app-sidebar .nav-badge {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    margin-left: 0;
   }
   .storm-analysis-layout {
     grid-template-columns: 1fr;
