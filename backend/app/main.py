@@ -28,8 +28,10 @@ app.add_middleware(
 
 VALID_STORM_IDS = ["BOB-04", "DEMO-BOB-001", "ARB-02"]
 
-@app.get("/")
-def read_root():
+frontend_dist = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "frontend", "dist")
+
+@app.get("/api/v1/info")
+def read_api_info():
     return {
         "system": settings.PROJECT_NAME,
         "status": "LIVE",
@@ -39,6 +41,14 @@ def read_root():
         "mosdac_enabled": settings.MOSDAC_ENABLED,
         "docs": "/docs",
     }
+
+@app.get("/")
+async def serve_root():
+    if os.path.exists(frontend_dist):
+        index_file = os.path.join(frontend_dist, "index.html")
+        if os.path.isfile(index_file):
+            return FileResponse(index_file)
+    return read_api_info()
 
 @app.get("/api/v1/health")
 def read_health():
