@@ -18,6 +18,7 @@ export const ModelPerformanceView: React.FC = () => {
   const modelComparisonTable = [
     { name: 'Persistence Baseline', modalities: 'None (Lag Track)', f1: '0.62', track24: '110 km', track48: '210 km', mae: '14.2 kt', status: 'BASELINE' },
     { name: 'Single IR ConvNet', modalities: 'INSAT IR Only', f1: '0.82', track24: '68 km', track48: '124 km', mae: '8.4 kt', status: 'DEPRECATED' },
+    { name: 'XGBoost RI Classifier (v1.0.0)', modalities: '23 Thermo & Kinematic Proxies', f1: '0.76 (AUC: 0.884)', track24: 'N/A (RI Prob)', track48: 'N/A', mae: '99.7% Prob Peak', status: 'ACTIVE (RI ENGINE)' },
     { name: 'Challenger Model (v1.5.0-rc1)', modalities: 'IR + VIS + WV + PMW', f1: '0.94', track24: '36.2 km', track48: '69.4 km', mae: '4.5 kt', status: 'CHALLENGER' },
     { name: 'Champion Model (v1.4.2 DualNet)', modalities: 'IR + VIS + WV + PMW + SST', f1: '0.93', track24: '38.6 km', track48: '72.1 km', mae: '4.8 kt', status: 'CHAMPION' },
   ];

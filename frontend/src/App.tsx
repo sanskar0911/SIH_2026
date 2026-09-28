@@ -17,6 +17,8 @@ import { ExplainabilityView } from './views/ExplainabilityView';
 import { ModelPerformanceView } from './views/ModelPerformanceView';
 import { DataHealthView } from './views/DataHealthView';
 import { AnalystFeedbackView } from './views/AnalystFeedbackView';
+import { RapidIntensificationView } from './views/RapidIntensificationView';
+import { SystemArchitectureView } from './views/SystemArchitectureView';
 import { SettingsView } from './views/SettingsView';
 
 const MainDashboardLayout: React.FC = () => {
@@ -30,6 +32,8 @@ const MainDashboardLayout: React.FC = () => {
         return <LiveIntelligenceView />;
       case 'cyclone_detection':
         return <CycloneDetectionView />;
+      case 'rapid_intensification':
+        return <RapidIntensificationView />;
       case 'genesis_watch':
         return <GenesisWatchView />;
       case 'forecast':
@@ -51,7 +55,7 @@ const MainDashboardLayout: React.FC = () => {
       case 'analyst_feedback':
         return <AnalystFeedbackView />;
       case 'system_architecture':
-        return <SettingsView />;
+        return <SystemArchitectureView />;
       default:
         return <OverviewView />;
     }

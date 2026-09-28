@@ -1,0 +1,13 @@
+{
+  "baseline_train_roc_auc": 0.9604,
+  "baseline_cv_roc_auc_mean": 0.8827,
+  "baseline_cv_roc_auc_std": 0.0094,
+  "tuned_train_roc_auc": 0.9172,
+  "tuned_cv_roc_auc_mean": 0.8871,
+  "tuned_cv_roc_auc_std": 0.0088,
+  "test_roc_auc": 0.8843,
+  "test_accuracy": 0.798,
+  "test_precision": 0.7292,
+  "test_recall": 0.7875,
+  "test_f1": 0.7572
+}

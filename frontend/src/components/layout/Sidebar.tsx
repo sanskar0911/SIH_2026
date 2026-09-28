@@ -16,6 +16,7 @@ import {
   Users,
   Target,
   ChevronDown,
+  Zap,
 } from 'lucide-react';
 
 interface NavItem {
@@ -45,6 +46,7 @@ export const Sidebar: React.FC = () => {
     {
       category: 'ANALYSIS',
       items: [
+        { id: 'rapid_intensification', label: 'Rapid Intensification', icon: Zap, badge: 'AI ML', badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/40' },
         { id: 'storm_analysis', label: 'Storm Multi-Channel', icon: Layers },
         { id: 'forecast', label: 'Forecast & Uncertainty', icon: TrendingUp },
         { id: 'genesis_watch', label: 'Genesis Watch', icon: Compass, badge: 'WATCH', badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30' },

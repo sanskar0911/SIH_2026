@@ -11,6 +11,7 @@ import {
   Radio,
   Sliders,
   Sparkles,
+  Zap,
 } from 'lucide-react';
 
 export const OverviewView: React.FC = () => {
@@ -197,8 +198,16 @@ export const OverviewView: React.FC = () => {
                         </div>
                         <span className="text-emerald-400 font-bold ml-1">HIGH</span>
                       </div>
-                      <div className="text-amber-400 font-bold">
-                        RI RISK: {s.rapid_intensification_risk}%
+                      <div
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentView('rapid_intensification');
+                        }}
+                        className="text-amber-400 font-bold hover:text-amber-300 hover:underline cursor-pointer flex items-center space-x-1"
+                        title="Click to launch AI Rapid Intensification Studio"
+                      >
+                        <Zap className="w-3 h-3 text-amber-400 animate-pulse" />
+                        <span>RI RISK: {s.rapid_intensification_risk}%</span>
                       </div>
                     </div>
                   </div>

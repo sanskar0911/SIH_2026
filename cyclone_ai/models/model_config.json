@@ -1,0 +1,42 @@
+{
+  "model_type": "XGBClassifier",
+  "library": "xgboost",
+  "seed": 42,
+  "best_params": {
+    "colsample_bytree": 0.8,
+    "learning_rate": 0.05,
+    "max_depth": 3,
+    "n_estimators": 200,
+    "subsample": 0.8
+  },
+  "scale_pos_weight": 1.5,
+  "metrics": {
+    "baseline_train_roc_auc": 0.9604,
+    "baseline_cv_roc_auc_mean": 0.8827,
+    "baseline_cv_roc_auc_std": 0.0094,
+    "tuned_train_roc_auc": 0.9172,
+    "tuned_cv_roc_auc_mean": 0.8871,
+    "tuned_cv_roc_auc_std": 0.0088,
+    "test_roc_auc": 0.8843,
+    "test_accuracy": 0.798,
+    "test_precision": 0.7292,
+    "test_recall": 0.7875,
+    "test_f1": 0.7572
+  },
+  "generalisation_check": "[OK] Model appears to generalise well",
+  "risk_thresholds": {
+    "LOW": [
+      0.0,
+      0.33
+    ],
+    "MODERATE": [
+      0.34,
+      0.66
+    ],
+    "HIGH": [
+      0.67,
+      1.0
+    ]
+  },
+  "data_note": "PROTOTYPE: Trained on SYNTHETIC data. Not a real meteorological forecasting system."
+}

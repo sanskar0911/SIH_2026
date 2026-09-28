@@ -2,6 +2,7 @@ export type ViewMode =
   | 'overview'
   | 'live_intelligence'
   | 'cyclone_detection'
+  | 'rapid_intensification'
   | 'genesis_watch'
   | 'forecast'
   | 'storm_analysis'
@@ -223,3 +224,68 @@ export interface DataHealthItem {
   data_age_min: number;
   uptime_pct: number;
 }
+
+export interface RapidIntensificationInput {
+  latitude: number;
+  longitude: number;
+  cyclone_age_hours: number;
+  wind_speed: number;
+  min_central_pressure: number;
+  prev_wind_speed: number;
+  prev_pressure: number;
+  wind_speed_change: number;
+  pressure_change: number;
+  sst: number;
+  relative_humidity: number;
+  vertical_wind_shear: number;
+  atmospheric_temp_200hPa: number;
+  cloud_top_temp: number;
+  water_vapour: number;
+  precipitation: number;
+  ocean_heat_content: number;
+  movement_speed: number;
+  movement_direction: number;
+  season_sin: number;
+  season_cos: number;
+  diurnal_sin: number;
+  diurnal_cos: number;
+}
+
+export interface FeatureImpact {
+  feature: string;
+  label: string;
+  value: number;
+  importance: number;
+  direction: 'INCREASES_RISK' | 'DECREASES_RISK' | 'NEUTRAL';
+  impact_text: string;
+}
+
+export interface RapidIntensificationResult {
+  risk_probability: number;
+  risk_percentage: number;
+  prediction: number;
+  risk_category: 'LOW' | 'MODERATE' | 'HIGH';
+  severity_level: 'LOW' | 'WATCH' | 'WARNING' | 'CRITICAL';
+  top_risk_factors: string[];
+  feature_impacts: FeatureImpact[];
+  threshold_info?: Record<string, [number, number]>;
+  disclaimer: string;
+  model_version: string;
+}
+
+export interface RIMetricsData {
+  model_type: string;
+  library: string;
+  test_roc_auc: number;
+  test_accuracy: number;
+  test_precision: number;
+  test_recall: number;
+  test_f1: number;
+  baseline_train_roc_auc: number;
+  baseline_cv_roc_auc_mean: number;
+  tuned_cv_roc_auc_mean: number;
+  tuned_cv_roc_auc_std: number;
+  top_features: Array<{ feature: string; label: string; unit: string; importance: number }>;
+  risk_thresholds: Record<string, [number, number]>;
+}
+

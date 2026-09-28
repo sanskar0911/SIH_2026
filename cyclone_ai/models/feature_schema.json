@@ -1,0 +1,30 @@
+{
+  "feature_names": [
+    "latitude",
+    "longitude",
+    "cyclone_age_hours",
+    "wind_speed",
+    "min_central_pressure",
+    "prev_wind_speed",
+    "prev_pressure",
+    "wind_speed_change",
+    "pressure_change",
+    "sst",
+    "relative_humidity",
+    "vertical_wind_shear",
+    "atmospheric_temp_200hPa",
+    "cloud_top_temp",
+    "water_vapour",
+    "precipitation",
+    "ocean_heat_content",
+    "movement_speed",
+    "movement_direction",
+    "season_sin",
+    "season_cos",
+    "diurnal_sin",
+    "diurnal_cos"
+  ],
+  "n_features": 23,
+  "target": "rapid_intensification",
+  "description": "Feature schema for cyclone RI XGBoost prototype model"
+}
